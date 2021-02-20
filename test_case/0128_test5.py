@@ -32,8 +32,5 @@ class TestCalc:
         print(f"a={a},b={b},result={result}")
         assert result == self.calc.add(a,b)
 
-    #Todo：相减功能
-    #Todo：相除功能
-
 
 
