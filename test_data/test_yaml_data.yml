@@ -59,7 +59,7 @@ div:
       - [-1,-1,1]
     ids: ['int','result0','mius']
 
-  float:
+  int_error:
     datas:
       - [1,0,0]
     ids: ['zeor']
