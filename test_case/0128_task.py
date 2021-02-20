@@ -19,7 +19,7 @@ class TestCalc:
     add_int_data =get_datas('add','int')
     add_float_data = get_datas('add', 'float')
     div_int_data = get_datas('div', 'int')
-    div_zeor_data = get_datas('div', 'float')
+    div_zeor_data = get_datas('div', 'int_error')
 
     #前置条件（一般用于执行用例前打开浏览器这种前置操作）
     def setup_class(self):
@@ -30,23 +30,23 @@ class TestCalc:
     def teardown_class(self):
         print('结束计算')
 
-    @pytest.mark.parametrize("a,b,result", add_int_data[0],ids=add_int_data[1])  #给测试用例命名
+    @pytest.mark.parametrize("a,b,result", add_int_data[0],ids=add_int_data[1])
     #相加功能
     def test_add(self,a,b,result):
         assert result == self.calc.add(a,b)
 
     #相加，浮点数0.1+0.2!=0.3情况特殊处理
-    @pytest.mark.parametrize("a,b,result", add_float_data[0],ids=add_float_data[1])  #给测试用例命名
+    @pytest.mark.parametrize("a,b,result", add_float_data[0],ids=add_float_data[1])
     def test_add_fload(self,a,b,result):
         assert result == round(self.calc.add(a,b),2)
 
     #相除功能
-    @pytest.mark.parametrize("a,b,result", div_int_data[0], ids=div_int_data[1])  # 给测试用例命名
+    @pytest.mark.parametrize("a,b,result", div_int_data[0], ids=div_int_data[1])
     def test_div(self, a, b, result):
         assert result == self.calc.div(a, b)
 
-    #除数为零的情况，特殊处理
-    @pytest.mark.parametrize("a,b,result", div_zeor_data[0], ids=div_zeor_data[1])  # 给测试用例命名
+    #除数为零的情况，特殊处理，捕获异常
+    @pytest.mark.parametrize("a,b,result", div_zeor_data[0], ids=div_zeor_data[1])
     def test_div_zeor(self, a, b, result):
           with pytest.raises(ZeroDivisionError):
               result = a/b
