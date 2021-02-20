@@ -1,6 +1,6 @@
 import pytest
 
-@pytest.fixture(autouse=True)
+@pytest.fixture()
 def test_login():
     print('登录')
 
